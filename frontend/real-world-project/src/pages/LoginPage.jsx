@@ -1,9 +1,6 @@
 const LoginPage = () => {
   return 
-    <div>
-      
-    </div>;
-  
+   <div className="text-white">oginPage</div>;
 };
 
 export default LoginPage;

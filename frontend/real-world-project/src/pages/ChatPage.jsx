@@ -1,9 +1,8 @@
 
 const ChatPage = () => {
   return 
-    <div>
-      ChatPage
-    </div>;
+    <div className="text-white">ChatPage</div>
+
   
 };
 

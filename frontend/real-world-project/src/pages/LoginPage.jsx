@@ -1,6 +1,9 @@
+
 const LoginPage = () => {
-  return 
-   <div className="text-white">oginPage</div>;
+  return (
+    <div>LoginPage</div>
+  );
 };
+
 
 export default LoginPage;

@@ -1,9 +1,6 @@
-
+// pages/ChatPage.jsx
 const ChatPage = () => {
-  return 
-    <div className="text-white">ChatPage</div>
-
-  
+  return <div>ChatPage</div>;
 };
 
 export default ChatPage;

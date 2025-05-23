@@ -14,9 +14,10 @@ const App = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["todos"],
     queryFn: async () => {
-      const res = await axiosInstance.get("http://localhost:5001/api/auth/me"); // Assuming baseURL is set
+      const res = await axiosInstance.get("/api/auth/me"); // Assuming baseURL is set
       return res.data;
     },
+    retry:false,
   });
 
   if (isLoading) return <div>Loading...</div>;

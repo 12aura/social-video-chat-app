@@ -7,6 +7,7 @@ import CallPage from "./pages/CallPage.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
 import OnboardingPage from "./pages/OnboardingPage";
 import { Toaster } from "react-hot-toast";
+
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "./lib/axios.js";
 
@@ -20,7 +21,10 @@ const App = () => {
     retry:false,
   });
 
-  const  authUser = authData?.user
+  const  authUser = authData?.user;
+  
+  if (isLoading) return <div className="text-center text-white p-4">Loading...</div>;
+
 
   return (
     <div className="h-screen" data-theme="night">

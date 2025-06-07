@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt.js"
+import bcrypt from 'bcryptjs';
+
 
 const userSchema = new mongoose.Schema({
     fullName:{
@@ -57,12 +58,6 @@ const userSchema = new mongoose.Schema({
 //createdAt, updatedAt
 
 //member since createdAt
-
-const User = mongoose.model("User", userSchema);
-//pre hook
-//It is called as password hashing where we will just turn our password to some gibbrish unreadbale text or something 
-//E.g. john@email.com 12345 => $%^&976%^
-
 userSchema.pre("save", async function(next)
 {
 
@@ -76,5 +71,17 @@ userSchema.pre("save", async function(next)
         next(error);
     }
     
-})
+});
+
+userSchema.methods.matchPassword = async function(enteredPassword)
+{
+    const isPasswordCorrect = await bcrypt.compare(enteredPassword, this.password);
+    return isPasswordCorrect;
+};
+const User = mongoose.model("User", userSchema);
+//pre hook
+//It is called as password hashing where we will just turn our password to some gibbrish unreadbale text or something 
+//E.g. john@email.com 12345 => $%^&976%^
+
+
 export default User;

@@ -1,11 +1,17 @@
 import axios from "axios";
+import { axiosInstance } from "./axios";
 
 export const signup = async (signupData) => {
-  try {
-    const response = await axios.post("/api/signup", signupData);
+    const response = await axiosInstance.post("/auth/signup", signupData);
     return response.data;
-  } catch (err) {
-    // Re-throw error to be caught by react-query
-    throw err;
-  }
 };
+
+export const getAuthUser = async () =>{
+  const res  = await axiosInstance.get("/auth/me");
+  return res.data;
+};
+
+export const completeOnboarding = async (userData)  => {
+  const response = await axios.post("/auth/onboarding",userData);
+  return response.data;
+}

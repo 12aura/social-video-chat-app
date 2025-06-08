@@ -1,6 +1,8 @@
 import useAuthUser from "../hooks/useAuthUser";
 import { useState} from "react";
 import { CameraIcon } from "lucide-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { completeOnboarding } from "../lib/api";
 const OnboardingPage = () => {
 
   const {authUser} = useAuthUser();

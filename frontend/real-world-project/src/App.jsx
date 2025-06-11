@@ -1,28 +1,27 @@
 import { Navigate, Route, Routes } from "react-router";
+
 import HomePage from "./pages/HomePage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import NotificationsPage from "./pages/NotificationsPage.jsx";
 import CallPage from "./pages/CallPage.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
-import OnboardingPage from "./pages/OnboardingPage";
-import { Toaster } from "react-hot-toast";
-import Layout from "./components/Layout.jsx";
+import OnboardingPage from "./pages/OnboardingPage.jsx";
 
-import PageLoader from "./components/pageLoader.jsx";
+import { Toaster } from "react-hot-toast";
+
+import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
+import Layout from "./components/Layout.jsx";
 import { useThemeStore } from "./store/useThemeStore.js";
 
 const App = () => {
-
-  
-  const {isLoading,authUser} = useAuthUser();
+  const { isLoading, authUser } = useAuthUser();
   const { theme } = useThemeStore();
 
-  const isAuthenticated = Boolean(authUser)
-  const isOnboarded = authUser?.isOnboarded
-  // const isOnboarded = authUser?.isOnboarded === true
-  
+  const isAuthenticated = Boolean(authUser);
+  const isOnboarded = authUser?.isOnboarded;
+
   if (isLoading) return <PageLoader />;
 
   return (
@@ -35,7 +34,6 @@ const App = () => {
               <Layout showSidebar={true}>
                 <HomePage />
               </Layout>
-              
             ) : (
               <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
             )
@@ -75,6 +73,7 @@ const App = () => {
             )
           }
         />
+
         <Route
           path="/chat/:id"
           element={
@@ -87,6 +86,7 @@ const App = () => {
             )
           }
         />
+
         <Route
           path="/onboarding"
           element={
@@ -107,5 +107,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
